@@ -1,6 +1,6 @@
-class ListNode<T> {
+class SNode<T> {
     value: T
-    next: ListNode<T> | null
+    next: SNode<T> | null
     constructor(value: T) {
         this.value = value
         this.next = null
@@ -8,17 +8,17 @@ class ListNode<T> {
 }
 
 class Stack<T> {
-    top: ListNode<T> | null
+    top: SNode<T> | null
     length: number = 0
 
     constructor(value: T) {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: SNode<T> = new SNode<T>(value)
         this.top = newNode
         this.length++
     }
 
     push(value: T): this {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: SNode<T> = new SNode<T>(value)
 
         if (this.length === 0) {
             this.top = newNode
@@ -32,10 +32,10 @@ class Stack<T> {
         return this
     }
 
-    pop(): undefined | ListNode<T> {
+    pop(): undefined | SNode<T> {
         if (this.length === 0) return undefined
 
-        const temp: ListNode<T> = this.top!
+        const temp: SNode<T> = this.top!
 
         if (this.length === 1) {
             this.top = null

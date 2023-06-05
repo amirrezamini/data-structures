@@ -1,7 +1,7 @@
-class ListNode<T> {
+class DLLNode<T> {
     value: T
-    next: ListNode<T> | null
-    prev: ListNode<T> | null
+    next: DLLNode<T> | null
+    prev: DLLNode<T> | null
 
     constructor(value: T) {
         this.value = value
@@ -10,18 +10,18 @@ class ListNode<T> {
 }
 
 class DoublyLinkedList<T> {
-    head: ListNode<T> | null
-    tail: ListNode<T> | null
+    head: DLLNode<T> | null
+    tail: DLLNode<T> | null
     length: number = 0
 
     constructor(value: T) {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: DLLNode<T> = new DLLNode<T>(value)
         this.head = this.tail = newNode
         this.length++
     }
 
     push(value: T): this {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: DLLNode<T> = new DLLNode<T>(value)
 
         if (this.length === 0) {
             this.head = this.tail = newNode
@@ -36,10 +36,10 @@ class DoublyLinkedList<T> {
         return this
     }
 
-    pop(): ListNode<T> | undefined {
+    pop(): DLLNode<T> | undefined {
         if (this.length === 0) return undefined
 
-        const temp: ListNode<T> = this.tail!
+        const temp: DLLNode<T> = this.tail!
         
         if (this.length === 1) {
             this.head = this.tail = null
@@ -55,10 +55,10 @@ class DoublyLinkedList<T> {
         return temp
     }
 
-    unshift(value: T): ListNode<T> | this {
+    unshift(value: T): DLLNode<T> | this {
         if (this.length === 0) return this.push(value)
 
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: DLLNode<T> = new DLLNode<T>(value)
 
         newNode.next = this.head
         this.head!.prev = newNode
@@ -69,11 +69,11 @@ class DoublyLinkedList<T> {
         return this;
     }
 
-    shift(): ListNode<T> | undefined {
+    shift(): DLLNode<T> | undefined {
         if (this.length === 0) return undefined
         if (this.length === 1) return this.pop()
 
-        const temp: ListNode<T> = this.head!
+        const temp: DLLNode<T> = this.head!
 
         this.head = this.head!.next
         this.head!.prev = null
@@ -86,10 +86,10 @@ class DoublyLinkedList<T> {
         return temp
     }
 
-    get(index: number): ListNode<T> | undefined {
+    get(index: number): DLLNode<T> | undefined {
         if (index < 0 || index >= this.length) return undefined
 
-        let temp: ListNode<T> = this.head!
+        let temp: DLLNode<T> = this.head!
 
         if (index < this.length / 2) {
             for (let i: number = 0; i < this.length; i++) {
@@ -122,7 +122,7 @@ class DoublyLinkedList<T> {
         if (index === 0) return this.unshift(value)
         if (index === this.length) return this.push(value)
         
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: DLLNode<T> = new DLLNode<T>(value)
 
         const before = this.get(index - 1)
         const after = before!.next

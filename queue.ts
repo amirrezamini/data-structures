@@ -1,6 +1,6 @@
-class ListNode<T> {
+class QNode<T> {
     value: T
-    next: ListNode<T> | null
+    next: QNode<T> | null
 
     constructor(value: T) {
         this.value = value
@@ -9,18 +9,18 @@ class ListNode<T> {
 }
 
 class Queue<T> {
-    first: ListNode<T> | null
-    last: ListNode<T> | null
+    first: QNode<T> | null
+    last: QNode<T> | null
     length: number = 0
 
     constructor(value: T) {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: QNode<T> = new QNode<T>(value)
         this.first = this.last = newNode
         this.length++
     }
 
     enqueue(value: T): this {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: QNode<T> = new QNode<T>(value)
 
         if (this.length === 0) {
             this.first = this.last = newNode
@@ -34,10 +34,10 @@ class Queue<T> {
         return this
     }
 
-    dequeue(): ListNode<T> | undefined {
+    dequeue(): QNode<T> | undefined {
         if (this.length === 0) return undefined
 
-        const temp: ListNode<T> = this.first!
+        const temp: QNode<T> = this.first!
 
         if (this.length === 1) {
             this.first = this.last = null

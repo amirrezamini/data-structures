@@ -1,6 +1,6 @@
-class ListNode<T> {
+class LLNode<T> {
     value: T
-    next: ListNode<T> | null
+    next: LLNode<T> | null
 
     constructor(value: T) {
         this.value = value
@@ -9,19 +9,19 @@ class ListNode<T> {
 }
 
 class LinkedList<T> {
-    head: ListNode<T> | null
-    tail: ListNode<T> | null
+    head: LLNode<T> | null
+    tail: LLNode<T> | null
     length: number = 0
 
     constructor(value: T) {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: LLNode<T> = new LLNode<T>(value)
         this.head = newNode
         this.tail = this.head
         this.length++
     }
 
     push(value: T): this {
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: LLNode<T> = new LLNode<T>(value)
 
         if (this.length === 0) {
             this.head = newNode
@@ -36,11 +36,11 @@ class LinkedList<T> {
         return this
     }
 
-    pop(): ListNode<T> | undefined {
+    pop(): LLNode<T> | undefined {
         if (this.length === 0) return undefined
 
-        let temp: ListNode<T> = this.head!
-        let pre: ListNode<T> = this.head!
+        let temp: LLNode<T> = this.head!
+        let pre: LLNode<T> = this.head!
 
         while (temp.next) {
             pre = temp
@@ -56,7 +56,7 @@ class LinkedList<T> {
     }
 
     unshift(value: T): this {
-        const newNode = new ListNode<T>(value)
+        const newNode = new LLNode<T>(value)
 
         if (this.length === 0) return this.push(value)
 
@@ -68,7 +68,7 @@ class LinkedList<T> {
         return this
     }
 
-    shift(): ListNode<T> | undefined {
+    shift(): LLNode<T> | undefined {
         if (this.length === 0) return undefined
 
         const temp = this.head
@@ -84,7 +84,7 @@ class LinkedList<T> {
         return temp!
     }
 
-    get(index: number): ListNode<T> | undefined {
+    get(index: number): LLNode<T> | undefined {
         if (index < 0 || index >= this.length) return undefined
         let temp = this.head
 
@@ -96,7 +96,7 @@ class LinkedList<T> {
         return temp!
     }
 
-    set(index: number, value: T): ListNode<T> | undefined {
+    set(index: number, value: T): LLNode<T> | undefined {
         let temp = this.get(index)
 
         if (temp) {
@@ -112,7 +112,7 @@ class LinkedList<T> {
 
         let pre = this.get(index - 1)
 
-        const newNode: ListNode<T> = new ListNode<T>(value)
+        const newNode: LLNode<T> = new LLNode<T>(value)
 
         if (pre) {
             newNode.next = pre.next
@@ -123,7 +123,7 @@ class LinkedList<T> {
         return this
     }
 
-    remove(index: number): this | undefined | ListNode<T> {
+    remove(index: number): this | undefined | LLNode<T> {
         if (index < 0 || index >= this.length) return undefined
         
         if (index === 0) return this.shift()
@@ -145,7 +145,7 @@ class LinkedList<T> {
         this.tail = temp
 
         let next = temp!.next
-        let prev: ListNode<T> | null = null
+        let prev: LLNode<T> | null = null
 
         for (let i = 0; i < this.length; i++) {
             next = temp!.next
